@@ -12,9 +12,20 @@ export default async function onRequest(context) {
   });
   
   // 创建适配EdgeOne Pages的请求/响应对象
+  const requestUrl = context.request.url;
+  let url;
+  
+  try {
+    // 尝试直接解析URL
+    url = new URL(requestUrl);
+  } catch (e) {
+    // 如果不是完整URL，添加协议和域名
+    url = new URL(requestUrl.startsWith('/') ? `https://example.com${requestUrl}` : `https://example.com/${requestUrl}`);
+  }
+  
   const mockReq = {
     method: context.request.method,
-    url: new URL(context.request.url).pathname + new URL(context.request.url).search,
+    url: url.pathname + url.search,
     headers: Object.fromEntries(context.request.headers.entries()),
     body: context.request.method !== 'GET' ? await context.request.text() : undefined,
   };
