@@ -1,20 +1,24 @@
 {
-  "name": "netlify-starter",
+  "name": "waline-edgeone-starter",
   "version": "1.0.0",
-  "description": "An Waline starter repository for deploy to netlify.com",
+  "description": "Waline comment system for Tencent Cloud EdgeOne Pages",
+  "main": "functions/comment.js",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "deploy": "echo 'Deploy to EdgeOne Pages'"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/walinejs/netlify-starter.git"
+    "url": "git+https://github.com/mgodex/waline-push-starter.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["waline", "comment", "edgeone", "tencent-cloud"],
+  "author": "mGod",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/walinejs/netlify-starter/issues"
+    "url": "https://github.com/mgodex/waline-push-starter/issues"
   },
-  "homepage": "https://github.com/walinejs/netlify-starter#readme",
+  "homepage": "https://github.com/mgodex/waline-push-starter#readme",
   "dependencies": {
-    "@waline/vercel": "^1.31.9",
-    "serverless-http": "^3.2.0"
+    "@waline/vercel": "^1.31.9"
   }
 }
