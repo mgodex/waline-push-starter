@@ -7,13 +7,9 @@
     "build": "echo 'No build step required'",
     "deploy": "echo 'Deploy to EdgeOne Pages'"
   },
-  "dependencies": {
-    "@waline/vercel": "^1.31.9"
-  },
   "edgeone": {
     "functions": {
-      "comment": {
-        "file": "api/comment.js",
+      "api/comment.js": {
         "runtime": "nodejs18.x",
         "memory": 128,
         "timeout": 30
@@ -22,7 +18,7 @@
     "routes": [
       {
         "path": "/api/comment",
-        "function": "comment"
+        "function": "api/comment.js"
       }
     ]
   }
