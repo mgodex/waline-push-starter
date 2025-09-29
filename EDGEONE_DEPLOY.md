@@ -44,6 +44,18 @@ waline-push-starter/
 2. 使用动态导入兼容CommonJS模块：`const { default: Application } = await import('@waline/vercel')`
 3. 确保环境变量已正确设置
 
+### Top-level await错误
+如果出现"top-level await is not available"错误：
+- EdgeOne Pages运行在Node.js 14环境，不支持top-level await
+- 使用函数包装来避免top-level await：
+```javascript
+export default async function handler(context) {
+  const { default: Application } = await import('@waline/vercel');
+  const app = Application({...});
+  return await app(context.request, context);
+}
+```
+
 ## 参考文档
 - [EdgeOne Pages Node Functions文档](https://edgeone.cloud.tencent.com/pages/document/184787642236784640)
 - [Express模板示例](https://express-template.edgeone.run)
