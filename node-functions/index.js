@@ -1,13 +1,12 @@
 // EdgeOne Pages Node Functions - Waline 评论系统
-// 使用官方文档要求的格式
+// 尝试直接使用 Vercel 的部署方式
 
 const Waline = require('@waline/vercel');
 
-// 创建 Waline 应用实例
+// 创建 Waline 应用实例，完全按照 Vercel 的方式
 const waline = Waline({
   env: 'edgeone',
   async postSave(comment) {
-    // do what ever you want after save comment
     console.log('Comment saved:', comment);
   },
 });
@@ -17,14 +16,13 @@ const waline = Waline({
 export default function onRequest(context) {
   return new Promise(async (resolve, reject) => {
     try {
-      // 将 EdgeOne 的请求格式转换为 Waline 期望的格式
+      // 将 EdgeOne 的请求格式转换为 Vercel 格式
       const { request } = context;
-      const url = new URL(request.url);
       
-      // 创建模拟的 Node.js req 对象
+      // 创建 Vercel 风格的 req 对象
       const req = {
         method: request.method,
-        url: url.pathname + url.search,
+        url: request.url,
         headers: Object.fromEntries(request.headers.entries()),
         body: null
       };
@@ -38,7 +36,7 @@ export default function onRequest(context) {
         }
       }
       
-      // 创建模拟的 Node.js res 对象
+      // 创建 Vercel 风格的 res 对象
       const res = {
         statusCode: 200,
         headers: {},
@@ -54,7 +52,7 @@ export default function onRequest(context) {
         }
       };
       
-      // 调用 Waline 处理请求
+      // 直接调用 Vercel 风格的 Waline 函数
       await waline(req, res);
       
       // 返回 EdgeOne 格式的响应
@@ -68,7 +66,7 @@ export default function onRequest(context) {
       resolve(new Response(JSON.stringify({ 
         code: 500, 
         message: 'Internal Server Error',
-        error: error.message 
+        error: error.message
       }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
