@@ -4,7 +4,15 @@ export default async function onRequest(context) {
   console.log('Waline function called:', context.request.url, context.request.method);
   
   // 处理特殊路径
-  const url = new URL(context.request.url);
+  const requestUrl = context.request.url;
+  let url;
+  
+  try {
+    url = new URL(requestUrl);
+  } catch (e) {
+    url = new URL(requestUrl.startsWith('/') ? `https://example.com${requestUrl}` : `https://example.com/${requestUrl}`);
+  }
+  
   const pathname = url.pathname;
   
   if (pathname === '/test') {
@@ -89,16 +97,6 @@ export default async function onRequest(context) {
   });
   
   // 创建适配EdgeOne Pages的请求/响应对象
-  const requestUrl = context.request.url;
-  let url;
-  
-  try {
-    // 尝试直接解析URL
-    url = new URL(requestUrl);
-  } catch (e) {
-    // 如果不是完整URL，添加协议和域名
-    url = new URL(requestUrl.startsWith('/') ? `https://example.com${requestUrl}` : `https://example.com/${requestUrl}`);
-  }
   
   // 处理headers对象
   let headers = {};

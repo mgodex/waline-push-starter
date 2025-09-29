@@ -99,6 +99,12 @@ export default async function onRequest(context) {
 - 检查环境变量是否正确设置（LEAN_ID、LEAN_KEY、LEAN_MASTER_KEY）
 - 查看EdgeOne Pages控制台的函数日志，确认Waline应用是否正常启动
 
+### 语法错误
+如果出现"identifier 'url' has already been declared"错误：
+- 这是因为在代码中重复声明了变量
+- 确保每个变量只声明一次
+- 使用不同的变量名或合并重复的代码块
+
 ## 参考文档
 - [EdgeOne Pages Node Functions文档](https://edgeone.cloud.tencent.com/pages/document/184787642236784640)
 - [Express模板示例](https://express-template.edgeone.run)
