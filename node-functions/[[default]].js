@@ -23,10 +23,22 @@ export default async function onRequest(context) {
     url = new URL(requestUrl.startsWith('/') ? `https://example.com${requestUrl}` : `https://example.com/${requestUrl}`);
   }
   
+  // 处理headers对象
+  let headers = {};
+  if (context.request.headers) {
+    if (typeof context.request.headers.entries === 'function') {
+      // 标准Headers对象
+      headers = Object.fromEntries(context.request.headers.entries());
+    } else if (typeof context.request.headers === 'object') {
+      // 普通对象
+      headers = context.request.headers;
+    }
+  }
+  
   const mockReq = {
     method: context.request.method,
     url: url.pathname + url.search,
-    headers: Object.fromEntries(context.request.headers.entries()),
+    headers: headers,
     body: context.request.method !== 'GET' ? await context.request.text() : undefined,
   };
   

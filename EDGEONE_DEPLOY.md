@@ -75,6 +75,12 @@ export default async function onRequest(context) {
 - 代码中已经包含了URL解析的容错处理
 - 会自动添加协议和域名来构建有效的URL
 
+### Headers错误
+如果出现"context.request.headers.entries is not a function"错误：
+- 这是因为EdgeOne Pages的headers对象可能不是标准的Headers对象
+- 代码中已经包含了headers对象的兼容性处理
+- 会自动检测headers对象类型并使用相应的处理方法
+
 ## 参考文档
 - [EdgeOne Pages Node Functions文档](https://edgeone.cloud.tencent.com/pages/document/184787642236784640)
 - [Express模板示例](https://express-template.edgeone.run)
