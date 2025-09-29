@@ -2,8 +2,7 @@
   "name": "waline-edgeone-starter",
   "version": "1.0.0",
   "description": "Waline comment system for Tencent Cloud EdgeOne Pages",
-  "type": "module",
-  "main": "node-functions/comment.js",
+  "main": "node-functions/index.js",
   "scripts": {
     "build": "echo 'No build step required'",
     "deploy": "echo 'Deploy to EdgeOne Pages'"
