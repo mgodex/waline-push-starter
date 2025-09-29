@@ -1,7 +1,7 @@
 // EdgeOne Pages Node Functions - Waline 评论系统
 // 使用官方文档要求的格式
 
-const Waline = require('@waline/vercel');
+import Waline from '@waline/vercel';
 
 // 创建 Waline 应用实例
 const waline = Waline({
