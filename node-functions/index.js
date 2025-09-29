@@ -1,4 +1,4 @@
-// 使用Express风格，按照官方文档示例
+// 使用函数包装来避免top-level await
 export default async function onRequest(context) {
   // 动态导入Waline应用
   const { default: Application } = await import('@waline/vercel');

@@ -10,7 +10,8 @@
 ```
 waline-push-starter/
 ├── node-functions/
-│   └── [[default]].js    # Waline应用入口
+│   ├── [[default]].js    # Waline应用入口（推荐）
+│   └── index.js          # 或者使用index.js
 ├── package.json          # 依赖配置
 └── robots.txt           # 静态文件
 ```
@@ -49,12 +50,18 @@ waline-push-starter/
 - EdgeOne Pages运行在Node.js 14环境，不支持top-level await
 - 使用函数包装来避免top-level await：
 ```javascript
-export default async function handler(context) {
+export default async function onRequest(context) {
   const { default: Application } = await import('@waline/vercel');
   const app = Application({...});
   return await app(context.request, context);
 }
 ```
+
+### Node Functions未识别
+如果出现"No node functions found"错误：
+- 确保文件名正确：使用`[[default]].js`或`index.js`
+- 确保使用`onRequest`函数名而不是`handler`
+- 检查文件是否在`node-functions`目录下
 
 ## 参考文档
 - [EdgeOne Pages Node Functions文档](https://edgeone.cloud.tencent.com/pages/document/184787642236784640)
