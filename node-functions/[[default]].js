@@ -1,5 +1,8 @@
 // 适配EdgeOne Pages Node Functions的请求/响应格式
 export default async function onRequest(context) {
+  // 添加调试信息
+  console.log('Waline function called:', context.request.url, context.request.method);
+  
   // 动态导入Waline应用
   const { default: Application } = await import('@waline/vercel');
   

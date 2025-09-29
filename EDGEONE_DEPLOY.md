@@ -28,7 +28,9 @@ waline-push-starter/
 - 输出目录：`./`
 
 ### 4. 访问路径
-部署成功后，Waline将在根路径 `/` 下运行。
+部署成功后：
+- 测试函数：访问 `/test` 路径验证Node Functions是否正常工作
+- Waline应用：访问根路径 `/` 或任何其他路径（由`[[default]].js`处理）
 
 ## 技术说明
 
@@ -80,6 +82,13 @@ export default async function onRequest(context) {
 - 这是因为EdgeOne Pages的headers对象可能不是标准的Headers对象
 - 代码中已经包含了headers对象的兼容性处理
 - 会自动检测headers对象类型并使用相应的处理方法
+
+### Not Found错误
+如果出现"Not Found"错误：
+- 首先访问 `/test` 路径验证Node Functions是否正常工作
+- 如果测试函数正常，说明Node Functions部署成功
+- 检查环境变量是否正确设置（LEAN_ID、LEAN_KEY、LEAN_MASTER_KEY）
+- 查看EdgeOne Pages控制台的函数日志，确认Waline应用是否正常启动
 
 ## 参考文档
 - [EdgeOne Pages Node Functions文档](https://edgeone.cloud.tencent.com/pages/document/184787642236784640)
