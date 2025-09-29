@@ -17,9 +17,52 @@ const waline = Waline({
 export default function onRequest(context) {
   return new Promise(async (resolve, reject) => {
     try {
-      // 直接调用 Waline 处理请求
-      const result = await waline(context.request, context);
-      resolve(result);
+      // 将 EdgeOne 的请求格式转换为 Waline 期望的格式
+      const { request } = context;
+      const url = new URL(request.url);
+      
+      // 创建模拟的 Node.js req 对象
+      const req = {
+        method: request.method,
+        url: url.pathname + url.search,
+        headers: Object.fromEntries(request.headers.entries()),
+        body: null
+      };
+      
+      // 获取请求体
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        try {
+          req.body = await request.text();
+        } catch (e) {
+          // 忽略获取 body 的错误
+        }
+      }
+      
+      // 创建模拟的 Node.js res 对象
+      const res = {
+        statusCode: 200,
+        headers: {},
+        body: '',
+        setHeader: function(name, value) {
+          this.headers[name] = value;
+        },
+        end: function(data) {
+          this.body = data || '';
+        },
+        write: function(data) {
+          this.body += data;
+        }
+      };
+      
+      // 调用 Waline 处理请求
+      await waline(req, res);
+      
+      // 返回 EdgeOne 格式的响应
+      resolve(new Response(res.body, {
+        status: res.statusCode,
+        headers: res.headers
+      }));
+      
     } catch (error) {
       console.error('Error handling request:', error);
       resolve(new Response(JSON.stringify({ 
