@@ -3,7 +3,7 @@ const Waline = require('@waline/vercel');
 const serverless = require('serverless-http');
 
 const app = Waline({
-  env: 'vercel',
+  env: 'edgeone',
   async postSave(comment) {
     // do what ever you want after save comment
   },
