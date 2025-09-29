@@ -33,7 +33,16 @@ waline-push-starter/
 
 - 使用`[[default]].js`作为入口文件，处理所有路由
 - 按照EdgeOne Pages Node Functions的要求导出应用实例
+- 使用ES模块格式，通过动态导入兼容CommonJS模块
 - 支持Express/Koa等框架，无需启动HTTP Server
+
+## 常见问题
+
+### 404错误
+如果部署后仍然404，检查：
+1. 确保使用ES模块格式（`import/export`）
+2. 使用动态导入兼容CommonJS模块：`const { default: Application } = await import('@waline/vercel')`
+3. 确保环境变量已正确设置
 
 ## 参考文档
 - [EdgeOne Pages Node Functions文档](https://edgeone.cloud.tencent.com/pages/document/184787642236784640)

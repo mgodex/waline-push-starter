@@ -1,4 +1,5 @@
-const Application = require('@waline/vercel');
+// 使用动态导入来兼容CommonJS模块
+const { default: Application } = await import('@waline/vercel');
 
 const app = Application({
   plugins: [],
