@@ -2,14 +2,14 @@
   "name": "waline-comment-system",
   "version": "1.0.0",
   "description": "Waline comment system for Tencent Cloud EdgeOne Pages",
-  "main": "api/comment.js",
+  "main": "node-functions/comment.js",
   "scripts": {
     "build": "echo 'No build step required'",
     "deploy": "echo 'Deploy to EdgeOne Pages'"
   },
   "edgeone": {
     "functions": {
-      "api/comment.js": {
+      "node-functions/comment.js": {
         "runtime": "nodejs18.x",
         "memory": 128,
         "timeout": 30
@@ -18,7 +18,7 @@
     "routes": [
       {
         "path": "/api/comment",
-        "function": "api/comment.js"
+        "function": "node-functions/comment.js"
       }
     ]
   }

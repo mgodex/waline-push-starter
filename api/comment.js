@@ -13,7 +13,7 @@ const waline = Waline({
 });
 
 // EdgeOne Pages 函数入口点
-exports.handler = async (event, context) => {
+module.exports = async (event, context) => {
   try {
     // 直接调用 Waline 处理请求
     return await waline(event, context);
