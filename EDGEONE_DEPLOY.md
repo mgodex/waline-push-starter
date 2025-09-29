@@ -63,6 +63,12 @@ export default async function onRequest(context) {
 - 确保使用`onRequest`函数名而不是`handler`
 - 检查文件是否在`node-functions`目录下
 
+### 502 Internal Server Error
+如果出现"this.res.setHeader is not a function"错误：
+- 这是因为Waline期望Express风格的请求/响应对象
+- 需要创建适配器来转换EdgeOne Pages的请求/响应格式
+- 代码中已经包含了完整的适配器实现
+
 ## 参考文档
 - [EdgeOne Pages Node Functions文档](https://edgeone.cloud.tencent.com/pages/document/184787642236784640)
 - [Express模板示例](https://express-template.edgeone.run)
