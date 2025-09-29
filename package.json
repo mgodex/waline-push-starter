@@ -1,24 +1,8 @@
 {
-  "name": "waline-edgeone-starter",
-  "version": "1.0.0",
-  "description": "Waline comment system for Tencent Cloud EdgeOne Pages",
-  "main": "node-functions/index.js",
-  "scripts": {
-    "build": "echo 'No build step required'",
-    "deploy": "echo 'Deploy to EdgeOne Pages'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mgodex/waline-push-starter.git"
-  },
-  "keywords": ["waline", "comment", "edgeone", "tencent-cloud"],
-  "author": "mGod",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mgodex/waline-push-starter/issues"
-  },
-  "homepage": "https://github.com/mgodex/waline-push-starter#readme",
+  "name": "template",
+  "version": "0.0.1",
+  "private": true,
   "dependencies": {
-    "@waline/vercel": "^1.31.9"
+    "@waline/vercel": "latest"
   }
 }
