@@ -29,8 +29,15 @@ waline-push-starter/
 
 ### 4. 访问路径
 部署成功后：
-- 测试函数：访问 `/test` 路径验证Node Functions是否正常工作
+- 基础测试：访问 `/test` 路径验证Node Functions是否正常工作
+- Waline测试：访问 `/waline-test` 路径测试Waline应用（不依赖数据库）
 - Waline应用：访问根路径 `/` 或任何其他路径（由`[[default]].js`处理）
+
+### 5. 测试步骤
+1. 首先访问 `/test` 确认Node Functions正常工作
+2. 然后访问 `/waline-test` 测试Waline应用基本功能
+3. 最后访问 `/` 测试完整的Waline应用
+4. 如果Waline测试失败，检查环境变量设置
 
 ## 技术说明
 
